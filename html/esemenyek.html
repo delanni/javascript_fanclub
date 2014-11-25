@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+        <head>
+        <title>Események</title>
+    </head>
+        <body>
+        <h1>Esemény esettanulmányok</h1>
+        <input type="button" value="nyomjad" />
+        <input class="rangeInput" data-color="red" type="range" min="0" max="255" step="5" />
+        <input class="rangeInput" data-color="green" type="range" min="0" max="255" step="5" />
+        <input class="rangeInput" data-color="blue" type="range" min="0" max="255" step="5" />
+        <div id="colorReceptor" style="position:absolute;left:0px;width:100px" data-rgb="0,0,0">O M G</div>
+        <script>
+            var b = document.getElementsByTagName("input")[0];
+            var bKeys = Object.keys(b);
+            for(var i=0;i<bKeys.length;i++){
+                var key = bKeys[i];
+                if (key.indexOf("on")!=0) continue; 
+                b[key] = function(arg){ console.log(arg.type,arg); }
+            }
+            
+            var attachAllEventHandlers = function(element){
+                var bKeys = Object.keys(element);
+                for(var i=0;i<bKeys.length;i++){
+                    var key = bKeys[i];
+                    if (key.indexOf("on")!=0) continue; 
+                    element[key] = function(arg){ console.log(arg.type, arg); }
+                }
+            }
+            
+            var rangeInputs = document.getElementsByClassName("rangeInput");
+            for(var i=0;i<rangeInputs.length;i++){
+                rangeInputs[i].oninput= function(arg){
+                    var colorReceptor = document.getElementById("colorReceptor");
+                    var rgb = colorReceptor.dataset["rgb"];
+                    var rgbValues = rgb.split(",").map(function(colorValue){return parseInt(colorValue)});
+                    
+                    switch (this.dataset.color) {
+                        case 'red':
+                            rgbValues[0] = this.value;
+                            break;
+                        case 'green':
+                            rgbValues[1] = this.value;
+                            break;
+                        case 'blue':
+                            rgbValues[2] = this.value;
+                            break;
+                    }
+                    rgb = rgbValues.join(",");
+                    colorReceptor.dataset["rgb"] = rgb;
+                    colorReceptor.style.backgroundColor = "rgb("+ rgb+ ")";
+                }
+            }
+            
+            document.getElementById("colorReceptor").onmousemove= function(){
+                this.style.left = (parseInt(this.style.left)+5*Math.random()-2) + "px";
+            };
+            
+            // sokféle eseménykezelő, nincs értelme mindet megnézni, idővel kitapasztalható
+            
+        </script>
+    </body>
+</html>

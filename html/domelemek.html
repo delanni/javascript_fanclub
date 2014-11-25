@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TESZT</title>
+    <style>
+        h1 {
+            color: maroon;
+            text-align: center;
+        }
+        span {
+            background-color: orange;
+            font-weight: bold;
+            margin: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="focim">Gyönyörű tesztoldal&nbsp</h1>
+    <div style="background-color:aquamarine;color:blue">
+        Cshő babi néni.
+    </div>
+    <span class="paros">Ez </span><span class="paratlan">bizony </span>
+    <span class="paros">egy </span><span class="paratlan">pár </span>
+    <span class="paros">span.</span>
+    <input type="button" value="nyomjad" onclick="magic(this)" />
+</body>
+<script type="text/javascript">
+    var magic = function(elem) {
+        console.log("Meg lett nyomva a ", elem);
+        disableButton(elem);
+    }
+
+    // szelektorok
+    var azOsszesDiv = document.getElementsByTagName("div");
+    var azOsszesParosOsztallyalRendelkezoElem = document.getElementsByClassName("paros");
+    var aFocim = document.getElementById("focim");
+    
+    var aParatlanok = document.querySelectorAll(".paratlan");
+    
+    // időzítés
+    setInterval(function(){
+        var focimSzoveg = aFocim.textContent;
+        var focimTomb = focimSzoveg.split("");
+        focimTomb.push(focimTomb.shift());
+        aFocim.textContent = focimTomb.join("");
+    },500);
+    
+    // stílus állítása
+    for(var i=0;i<azOsszesParosOsztallyalRendelkezoElem.length;i++){
+        var el = azOsszesParosOsztallyalRendelkezoElem[i];
+        // style változó, benne az összes css property camelCase-ben
+        el.style.backgroundColor = "yellow";
+    }
+    
+    // attribútum állítása
+    // triviális attribútumok (value, width, height, text, id, src...)
+    document.getElementsByTagName("input")[0].value="KLIKK";
+    
+    // bármely attribútum állítása
+    azOsszesDiv[0].setAttribute("Akutyafajat",3);
+    var disableButton = function(el){ el.setAttribute("disabled","disabled"); };
+    
+    // elem készítése
+    var b = document.createElement("button");
+    b.textContent ="class change";
+    
+    // és beszúrása
+    azOsszesDiv[0].appendChild(b);
+    
+    // eseménykezelőfüggvény megadása
+    b.onclick = function(){ 
+        // osztályok hozzáadása, elvétele
+        document.getElementsByTagName("input")[0].classList.add("paros");
+        aParatlanok[0].remove("paratlan");
+    }
+    
+</script>
+
+</html>
