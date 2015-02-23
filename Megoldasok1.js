@@ -84,7 +84,55 @@ function(a,b,c){
 	}
 }
 
+// 6. Minimax
+/**
+ * Use the "arguments" variable to determine the minimum and the maximum of the give numbers for the input. Return them in an array.
+ **/
 
+// Arguments formában kapunk változó mennyiségű argumentumot
+function() {
+    // Kezdjük olyan értékekről a minimumot és a maximumot, hogy biztos le legyenek cserélve.
+    var min = Infinity,
+        max = -Infinity;
+    // Egy ciklussal nézzük meg az összes számot
+    for (var i = 0; i < arguments.length; i++) {
+    	// Ha az aktuális szám kisebb mint a minimum, ő az új minimum
+        if (arguments[i] < min) min = arguments[i];
+        // Ha az aktuális szám nagyobb mint a maximum, ő lesz az új max
+        if (arguments[i] > max) max = arguments[i];
+    }
+    // adjuk vissza őket egy tömbben
+    return [min, max];
+}
+
+// 6. Minimax - High level functionality megoldás
+// plusz tudás: a Math objektum rendelkezik min és max függvényekkel
+// plusz tudás: a függvények .apply() függvénye második paraméterként tömbként várja az argumentumokat
+function(){
+	// Ez kiszedi a minimumot
+	var min = Math.min.apply(null,arguments);
+	// Ez kiszedi a maximumot
+	var max = Math.max.apply(null,arguments);
+	// Visszaadjuk egy tömbben
+	return [min, max];
+}
+
+// 7. Fibonacci - szép megódás
+/**
+ * Given an array of numbers on the input (N), return an array of N[i]th fibonacci numbers. E.g.: Input [1,3,5] -> output [1,3,8]
+ **/
+// nem kell plusz tudás a map használatán kívül
+function(N) {
+    // Csináljunk egy függvényt, ami visszaadja az n. fibonacci számot
+    var fib = function(n) {
+    	// ha ez 0 vagy 1, akkor adjon vissza 1-et
+        if (n <= 1) return 1;
+        // különben rekurzívan számítsa ki az értékét
+        else return fib(n - 1) + fib(n - 2);
+    }
+    // transzformáljuk az N értékeit egy .map() függvénnyel, és a transzformáció a fibonacci függvény
+    return N.map(fib);
+}
 
 
 ///////// STRINGEK /////////////
