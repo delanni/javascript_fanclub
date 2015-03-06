@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<!-- HTML Feladatok -->
+	
+	<!-- Elso feladat: 
+		Allitsd be a kovetkezoket a weboldalon:
+			Az oldal cime legyen : TURBAN KFT.
+			Az oldal hasznalja a turban.css stiluslapot
+			Allits be tetszoleges meta-tulajdonsagot az oldalon (ha nem tudsz egyet fejbol, googlizz)
+			Javitsd ki a bodyban az elirt TAG-eket
+			Oldd meg, hogy a Lorem Ipsum szoveg ne torolje ki a 
+			Javits az indentalason, ahol csak tudsz, ha nem tudsz akkor (http://jsbeautifier.org/)
+			Add hozza a rendelheto termekekhez a 'kutyaparizer'-t, ahogy azt igerte a weboldal.
+			Az oldal tegye elerhetove a turban.js-ben definialt fuggvenyeket (huzd be a turban.js-t)
+			Adj hozza egy rendelo gombot, ami a 'megrendel' fuggvenyt hivja meg a kivalasztott termek nevevel.
+			Javitsd ki a JS fajlt ugy, hogy mukodjon a rendeles gomb
+	-->
+	<head>
+	
+	</head>
+	<body>
+		<div id='wrapper'>
+			<header class='header'>
+				<h2 id="cim">TURBAN kft.</h2>
+			</header>
+				<div>
+					<div id='loremipsum'>
+						<h1>Udvozoljuk!<h1>
+						<div>Cegunk rengeteg jo dolgot arul, tobbek kozt kutyaparizert is.</div>
+						<form>
+							<label for='selector'>Kerem valassza ki a rendelendo termeket:</label>
+							<select>
+								<option>Zoldseg</option>
+								<option>1 Zsak homok</option>
+								<option>2 Zsak homok</option>
+								<option>Biciklikerek</option>
+								<option>Kolbasz</option>
+							</select>
+						</form>
+					</div>
+					<script>
+						var xhr = new XMLHttpRequest();
+						xhr.onreadystatechange = function(code,data){
+							if (code == 200) {
+								document.getElementById('loremipsum').innerHTML = data;
+							}
+						}
+						xhr.open("GET", "loremipsum.html");
+						xhr.send();
+					</script>
+				</div>
+			<footer class='footer'></footer>
+		</div>
+	</body>
+</html>
