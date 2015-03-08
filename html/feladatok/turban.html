@@ -40,10 +40,8 @@
 					</div>
 					<script>
 						var xhr = new XMLHttpRequest();
-						xhr.onreadystatechange = function(code,data){
-							if (xhr.readystate == 4 && xhr.statuscode == 200) {
-								document.getElementById('loremipsum').innerHTML = data;
-							}
+						xhr.onload = function(data){
+							document.getElementById('loremipsum').innerHTML = xhr.responseText;
 						}
 						xhr.open("GET", "loremipsum.html");
 						xhr.send();
