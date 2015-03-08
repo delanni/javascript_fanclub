@@ -1,8 +1,86 @@
 <!DOCTYPE html>
-  <body>
+<html>
+<head></head>
+<body>
     <script>
-      var 
-      // Enter your code here
+        var elements = [{
+            'name': 'header',
+            'id': 'masthead',
+            'class': 'site-header',
+            'children': [{
+                'name': 'h1',
+                'id': null,
+                'class': 'site-title',
+                'text': 'A site neve'
+            }]
+        }, {
+            'name': 'div',
+            'id': null,
+            'class': 'site-content',
+            'children': [{
+                'name': 'h2',
+                'id': null,
+                'class': 'site-title',
+                'text': 'Aloldal neve'
+            }, {
+                'name': 'p',
+                'id': null,
+                'class': null,
+                'text': 'Első bekezdés szövege'
+            }, {
+                'name': 'p',
+                'id': null,
+                'class': null,
+                'text': 'Második bekezdés szövege'
+            },{
+                'name':'h2',
+                'id':null,
+                'class':null,
+                'text':'Felsorolás'
+            },{
+                'name':'ul',
+                'id':'felsorolas',
+                'class':null,
+                'children':[{
+                    'name':'li',
+                    'id':null,
+                    'class':null,
+                    'text':'Első'
+                },{
+                    'name':'li',
+                    'id':null,
+                    'class':null,
+                    'text':'Második'
+                },{
+                    'name':'li',
+                    'id':null,
+                    'class':null,
+                    'text':'Harmadik'
+                }]
+            }]
+        }, {
+            'name': 'footer',
+            'id': null,
+            'class': 'site-footer',
+            'children': [{
+                'name': 'p',
+                'id': 'author-name',
+                'class': null,
+                'text': 'Site by '
+            }]
+        }];
+
+        /**
+            Írj olyan javascript kódot, ami kifejti a fenti struktúrát dom elemekké. A kifejtett struktúrát illeszd a body alá.
+
+            Szükséges lehet:
+            document.body  // a body elem
+            document.createElement(elementName: string) // a megadott nevű dom elem elkészítése
+            elem.appendChildren(child: HTMLDOMElement) // child beszúrása elem alá
+            elem.id // az elem Id-je
+            elem.classList // az elem class listája, amihez az .add(classname: string) függvénnyel lehet hozzáadni új classt-
+        **/
     </script>
-  </body>
+</body>
+
 </html>
