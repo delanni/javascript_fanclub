@@ -6,9 +6,9 @@
 		Állítsd be a következőket a weboldalon:
 			Az oldal címe legyen : TURBAN KFT.
 			Az oldal használja a turban.css stíluslapot
-			Állits be tetszoleges meta-tulajdonsagot az oldalon (ha nem tudsz egyet fejbol, googlizz)
-			Javitsd ki a bodyban az elirt TAG-eket
+			Állits be a <meta charset="UTF-8"> meta-tulajdonsagot az oldalon
 			Oldd meg, hogy a Lorem Ipsum szöveg ne törölje ki a cég üdvözlőszövegét
+			Javitsd ki a bodyban az elirt TAG-eket
 			Javíts az indentáláson, ahol csak tudsz, ha nem tudsz akkor (http://jsbeautifier.org/)
 			Add hozzá a rendelhető termekekhez a 'kutyaparizer'-t, ahogy azt ígerte a weboldal.
 			Az oldal tegye elérhetővé a turban.js-ben definiált függvényeket (húzd be a turban.js-t)
@@ -21,22 +21,22 @@
 	<body>
 		<div id='wrapper'>
 			<header class='header'>
-				<h2 id="cim">TURBAN kft.</h2>
+				<h1 id="cim">TURBAN kft.</h2>
 			</header>
 				<div>
 					<div id='loremipsum'>
-						<h1>Udvozoljuk!<h1>
-						<div>Cegunk rengeteg jo dolgot arul, tobbek kozt kutyaparizert is.</div>
+						<h2>Udvozoljuk!</h1>
+						<div>Cegunk rengeteg jo dolgot arul, tobbek kozt kutyaparizert is.<div>
 						<form>
-							<label for='selector'>Kerem valassza ki a rendelendo termeket:</label>
+							<label for='selector'>Kerem valassza ki a rendelendo termeket:
 							<select>
-								<option>Zoldseg</option>
-								<option>1 Zsak homok</option>
-								<option>2 Zsak homok</option>
-								<option>Biciklikerek</option>
-								<option>Kolbasz</option>
+								<option>Zoldseg<option>
+								<option>1 Zsak homok<option>
+								<option>2 Zsak homok<option>
+								<option>Biciklikerek<option>
+								<option>Kolbasz<option>
 							</select>
-						</form>
+						</from>
 					</div>
 					<script>
 						var xhr = new XMLHttpRequest();
@@ -47,7 +47,7 @@
 						xhr.send();
 					</script>
 				</div>
-			<footer class='footer'></footer>
+			<footer class='footer' />
 		</div>
 	</body>
 </html>
