@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset='utf-8' />
 	<title></title>
 	<style type="text/css">
 	html{
@@ -21,7 +22,8 @@
 	<canvas id='canvas' width='640' height='480'></canvas>
 	<div>
 		<button onclick="ctx.loadImg('jancsik.png')">LoadImg</button>
-		<p>function(x,y,color){</p>
+		<input type='checkbox' id='needNeighbours'>Need Neighbours</input>
+		<p>function(x,y,color,neighbours){</p>
 		<textarea id='codeArea'></textarea>
 		<p>}</p>
 		<button onclick="tryExecute()">Execute</button>
@@ -41,12 +43,25 @@
 		this.putImageData(imgData,0,0);
 	};
 
-	ctx.colorize = function(colFn){
+	ctx.colorize = function(colFn,neighbours){
 		var imgData = this.getImageData(0,0,this.canvas.width,this.canvas.height);
 		var data = imgData.data;
+		data.getColor = function(x,y){
+		 var idx = (x+y*c.width)*4;
+		 if (idx<0 || idx >= c.width * c.height * 4) return [0,0,0,0];
+		 return [data[idx],data[idx+1],data[idx+2],data[idx+3]]; 
+		}
 		var x = y = 0;
 		for (var i=0; i< data.length; i+=4){
-			var color = colFn(x,y,[data[i],data[i+1],data[i+2],data[i+3]]);
+			if (neighbours){
+			var color = colFn(x,y,data.getColor(x,y),[
+				data.getColor(x-1,y-1),data.getColor(x,y-1),data.getColor(x+1,y-1),
+				data.getColor(x-1,y),data.getColor(x,y),data.getColor(x+1,y),
+				data.getColor(x-1,y+1),data.getColor(x,y+1),data.getColor(x+1,y+1)
+				]);
+			} else {
+				color = colFn(x,y,data.getColor(x,y));
+			}
 			data[i] = color[0];
 			data[i+1] = color[1];
 			data[i+2] = color[2];
@@ -77,9 +92,12 @@
 	};
 
 	var tryExecute = function(){
+		console.log("Trying to execute");
+		console.time("EXECUTE");
 		var code = document.getElementById("codeArea").value;
-		var extendedCode = "ctx.colorize(function(x,y,color){" + code + "})";
+		var extendedCode = "ctx.colorize(function(x,y,color,neighbours){" + code + "}," + document.getElementById("needNeighbours").checked + ")";
 		eval(extendedCode);
+		console.timeEnd("EXECUTE");
 	}
 </script>
 </body>
