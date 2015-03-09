@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		.row:nth-child(2n) { background: #eee; }
+	</style>
+</head>
+<body>
+<div class="todo">
+
+</div>
+<div class="field">
+	<input type="text" value="" class="input">
+	<button class="button">+</button>
+</div>
+<script>
+var todo = document.querySelector('.todo');
+var input = document.querySelector('.input');
+var button = document.querySelector('.button');
+button.addEventListener('click', function() {
+	/**
+	 *
+	 * IDE ÍRD A MEGOLDÁST:
+	 * 1. hozz letre 0 kezdőértékkel egy counter nevű változót
+	 * 2. férj hozzá az input nevű űrlapmező értékéhez tárold változóban value néven
+	 * 3. hozz létre egy row nevű, div típusú html taget
+	 * 4. vizsgáld az elemek generálása után a forráskódot! Mi a hiba?
+	 * 5. Javítsd legjobb belátásod szerint!
+	 *
+	 */
+	var row_text = document.createTextNode(value);
+	row.setAttribute('class', 'row');
+	row.setAttribute('id', 'row-' + counter);
+	row.appendChild(row_text);
+	todo.appendChild(row);
+	counter++;
+});
+
+</script>
+</body>
+</html>
