@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Sorsolás</title>
+</head>
+<body>
+<div class="site">
+	<div>
+		<p><strong>Kezdőérték (benne van)</strong></p>
+		<input class="input-from" type="text" value="">
+	</div>
+	<div>
+		<p><strong>Záróérték (nincs benne)</strong></p>
+		<input class="input-to" type="text" value="">
+	</div>
+	<div>
+		<p><strong>Generálandó értékek száma</strong></p>
+		<input class="input-number-of-values" type="text" value="">
+	</div>
+	<div>
+		<p><button class="button" type="button">Sorsol</button></p>
+	</div>
+	<div class="results"></div>
+</div>
+<script>
+var input_from = document.querySelector('.input-from');
+var input_to = document.querySelector('.input-to');
+var input_number_of_values = document.querySelector('.input-number-of-values');
+var div_results = document.querySelector('.results');
+
+var btn = document.querySelector('.button');
+
+function generate(value_from, value_to, number_of_values) {
+	var numbers = [];
+  div_results.innerHTML = '';
+	for (var i = 0; i < number_of_values; i++) {
+		number = Math.floor(Math.random() * (value_to - value_from)) + value_from;
+		numbers.push(number);
+		div_results.innerHTML += '<p><strong>' + (i + 1) + ':</strong> ' + number + '</p>';
+	}
+	return numbers;
+}
+btn.addEventListener('click', function() {
+	var value_from = parseInt(input_from.value);
+	var value_to = parseInt(input_to.value);
+	var number_of_values = parseInt(input_number_of_values.value);
+	generate(value_from, value_to, number_of_values);
+});
+</script>
+</body>
+</html>
