@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	html{
+		margin:0;
+		padding:0;
+		background:#ccc;
+	}
+	canvas{
+		border:1px dotted red;
+	}
+	#wrapper>* {
+		float:left;
+	}
+	</style>
+</head>
+<body>
+<div id='wrapper'>
+	<canvas id='canvas' width='640' height='480'></canvas>
+	<div>
+		<button onclick="ctx.loadImg('jancsik.png')">LoadImg</button>
+		<p>function(x,y,color){</p>
+		<textarea id='codeArea'></textarea>
+		<p>}</p>
+		<button onclick="tryExecute()">Execute</button>
+	</div>
+</div>
+<script type="text/javascript">
+	var c = document.getElementById("canvas");
+
+	var ctx = c.getContext("2d");
+
+	ctx.setPixels = function(pixels){
+		var imgData = this.getImageData(0,0,this.canvas.width,this.canvas.height);
+		for (var i=0; i< pixels.length; i++){
+			var startIndex = (x+y*c.width)*4;
+			imgData.data[startIndex] = imgData.data[startIndex+1] = imgData.data[startIndex+2] = imgData.data[startIndex+3] = 255;
+		}
+		this.putImageData(imgData,0,0);
+	};
+
+	ctx.colorize = function(colFn){
+		var imgData = this.getImageData(0,0,this.canvas.width,this.canvas.height);
+		var data = imgData.data;
+		var x = y = 0;
+		for (var i=0; i< data.length; i+=4){
+			var color = colFn(x,y,[data[i],data[i+1],data[i+2],data[i+3]]);
+			data[i] = color[0];
+			data[i+1] = color[1];
+			data[i+2] = color[2];
+			data[i+3] = color[3];
+
+			x = x+1;
+			if (x==c.width) {
+				y = y+1;
+				x = 0;
+			}
+		}
+		this.putImageData(imgData,0,0);
+	};
+
+	ctx.clear = function(color){
+		this.save();
+		this.setFillColor(color || "#ffffff");
+		this.fillRect(0,0,this.canvas.width,this.canvas.height);
+		this.restore();
+	};
+
+	ctx.loadImg = function(imgUrl){
+		var img = document.createElement("img");
+		img.onload = function(){
+			ctx.drawImage(img,0,0,ctx.canvas.width,ctx.canvas.height);
+		}
+		img.src = imgUrl;
+	};
+
+	var tryExecute = function(){
+		var code = document.getElementById("codeArea").value;
+		var extendedCode = "ctx.colorize(function(x,y,color){" + code + "})";
+		eval(extendedCode);
+	}
+</script>
+</body>
+</html>
