@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title></title>
     <style type="text/css">
         .third {
@@ -15,19 +15,15 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        
         .third:hover {
             border: 3px dotted rgba(70, 50, 230, 1);
         }
-        
         .red {
             background-color: #FF351C;
         }
-        
         .green {
-            background-color: #FF351C;
+            background-color: lime;
         }
-        
         .yellow {
             background-color: #E8D715;
         }
@@ -54,10 +50,45 @@
                 // a class-ok: red, green, yellow
 
                 // 1. feladat: kezelje a három elem úgy a kattintást, hogy felveszik a 'red', 'green' vagy 'yellow' osztályok egyikét
+                var leftie = document.getElementById("left");
+
+                var pirositofuggveny = function(eventArgs) {
+                    this.classList.add("red");
+                };
+
+                leftie.onclick = function(eventArgs) {
+                    this.classList.add("red");
+                };
+
 
                 // 2. feladat: oldd meg, hogy következő kattintásra törlődjön az előzőként felrakott class, és kvázi rotáljon a blokk színe piros-zöld-sárga hármasban
+                var szinek = ["red", "green", "yellow"];
+                var leftSzine = 0;
+
+                leftie.szinRotalas = function() {
+                    if (leftie.classList.contains(szinek[leftSzine])) {
+                        leftie.classList.remove(szinek[leftSzine]);
+                    }
+                    leftSzine = (leftSzine + 1) % 3;
+                    leftie.classList.add(szinek[leftSzine]);
+                };
+                
+                
 
                 // 3. feladat: oldd meg, hogy kattintástól kattintásig, időzítve, másodpercenként változik az elem színe
+                
+                var megy = false;
+                var intervalId;
+                leftie.onclick = function(){
+                    if (!megy){
+                        intervalId = setInterval(leftie.szinRotalas, 1000);
+                        megy = true;
+                    } else {
+                        clearInterval(intervalId);
+                        megy = false;
+                    }
+                }
+                
             </script>
 </body>
 

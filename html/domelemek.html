@@ -41,6 +41,7 @@
     var aParatlanok = document.querySelectorAll(".paratlan");
     
     // időzítés
+    // setTimeout()
     setInterval(function(){
         var focimSzoveg = aFocim.textContent;
         var focimTomb = focimSzoveg.split("");
@@ -71,6 +72,7 @@
     azOsszesDiv[0].appendChild(b);
     
     // eseménykezelőfüggvény megadása
+    // b.addEventListener('click', function(){}); 
     b.onclick = function(){ 
         // osztályok hozzáadása, elvétele
         document.getElementsByTagName("input")[0].classList.add("paros");
