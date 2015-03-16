@@ -1,0 +1,1 @@
+alert("juhu, a js betoltes is megy");
