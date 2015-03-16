@@ -9,25 +9,40 @@
             margin: 2px;
             background-color: #eee;
         }
-    </style>
+        #dalszoveg span{
+        }
+        </style>
 </head>
 
 <body>
     <h1>Halott pénz dalszöveg generátor</h1>
     <input type='button' value='MÉG!!' onclick='vanMegValami()' />
-    <input type='button' value="MÉÉÉG!" onclick='mikorMenjunk()' />
+    <input type='button' value="MÉÉÉG!" id='masodikgomb'  />
     <h2>Halott pénz - Van valami a levegõben...</h2>
     <div id="dalszoveg">
     </div>
     <script type="text/javascript">
 
         var vanMegValami = function() {
+            // Ez a fuggveny mar a kommenttel jelolt elem esemenykezelojehez van kotve
+            // es ha valaki ezt a gombot megnyomja, akkor adjunk hozza egyet a 
+            // kovetkezo nagyszeru sorbol:
+            
+            // "Van valami a levegoben, valami ami $valamikor $valamitcsinal."
+            // Add hozza az uj 'span' vagy 'div' elemet a dalszoveg id-ju elemhez
+            
             
         };
 
         var mikorMenjunk = function() {
-            
+            // Ha valaki ezt a fuggvenyt meghivja, akkor adjunk hozza egyet a 
+            // kovetkezo nagyszeru sorbol:
+            // "$n-kor elindulni? Na meg mit nem!"
+            // Add hozza az uj 'span' vagy 'div' elemet a 'dalszoveg' id-ju elemhez
         };
+        
+        // Miutan elkeszult a fuggveny, add hozza a 'masodikgomb' id-ju elemhez
+        
     </script>
 </body>
 
