@@ -8,6 +8,7 @@ if (args.length < 3) {
     console.log("USAGE:");
     console.log("For encoding: node processor.js <fileToEncode>");
     console.log("For decoding: node processor.js decode <fileToDecode>");
+    process.exit();
 }
 
 var mode = "encode";
